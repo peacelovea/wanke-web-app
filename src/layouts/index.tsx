@@ -6,7 +6,7 @@ import logo from './logo.svg';
 export const layout = () => {
   return {
     logo,
-    title: '天枢',
+    title: '鲁班',
     siderWidth: 200,
     navTheme: 'light',
     menuProps: {
