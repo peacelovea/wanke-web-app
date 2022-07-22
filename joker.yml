@@ -1,0 +1,18 @@
+# 阅读构建文档，完成 joker.yml：http://lavie.zhdocs.io/en/latest/user_guides/getting_started.html#joker-yml
+
+version: 2.0
+base_image: python3/3.7_jessie
+
+# 参考文档：http://lavie.zhdocs.io/en/latest/user_guides/customize_jokeryml.html#build-script-required
+build:
+  - echo enter your build command here.
+
+# 参考文档：http://lavie.zhdocs.io/en/latest/user_guides/customize_jokeryml.html#optional-but-important
+artifacts:
+  targets:
+    - docker
+
+# 参考文档：http://lavie.zhdocs.io/en/latest/user_guides/customize_jokeryml.html#test-script-required
+test:
+  unittest:
+    - echo enter your unittest command here.
