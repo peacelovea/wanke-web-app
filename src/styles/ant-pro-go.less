@@ -1,0 +1,116 @@
+// 这里定义一些 AntProGo 提供的全局原子类或一些通用的样式类。业务的样式不应该写在这里
+@import '~antd/es/style/themes/default.less';
+@import 'variables';
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.clear-float {
+  &::before,
+  &::after {
+    display: table;
+    clear: both;
+    content: ' ';
+  }
+}
+
+.small-text,
+.sub-text {
+  font-size: 12px;
+}
+
+.primary-color {
+  color: @primary-color;
+}
+
+.success-color {
+  color: @success-color;
+}
+
+.warning-color {
+  color: @warning-color;
+}
+
+.sub-color,
+.sub-text {
+  color: @text-color-secondary;
+}
+
+.error-color {
+  color: @error-color;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
+
+.forbidden-cursor {
+  cursor: not-allowed;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.left-text {
+  text-align: left;
+}
+
+.pd-l {
+  padding-left: 0;
+}
+.pd-r {
+  padding-right: 0;
+}
+
+.mg-t {
+  margin-top: @spacing;
+}
+
+.mg-b {
+  margin-bottom: @spacing;
+}
+
+.mg-l {
+  margin-left: @spacing;
+}
+
+.mg-r {
+  margin-right: @spacing;
+}
+
+.children-with-mg-t > :not(:first-child) {
+  margin-top: @spacing;
+}
+
+.children-with-mg-l > :not(:first-child) {
+  margin-left: @spacing;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
+.full-width {
+  width: 100%;
+}
+
+// 样式覆盖
+// https://github.com/ant-design/ant-design/issues/26816
+.ant-menu-item .anticon,
+.ant-menu-submenu-title .anticon {
+  transition: none !important;
+}
