@@ -17,10 +17,6 @@ export const JUMP_TYPE_OPTIONS = new Map([
 export const RECEIVER_TYPE_OPTIONS = new Map([
   [ReceiverTypeEnum.beDisposer, '被处置者'],
   [ReceiverTypeEnum.reporter, '举报者'],
-  [ReceiverTypeEnum.complainant, '申诉者'],
-  [ReceiverTypeEnum.beConsulted, '被咨询者'],
-  [ReceiverTypeEnum.beCommunicator, '被主动沟通者'],
-  [ReceiverTypeEnum.qualified, '资质认证者'],
 ]);
 
 export const TEMPLATE_TYPE_OPTIONS = new Map([
