@@ -14,7 +14,11 @@ const TemplateSelector = ({
   ...props
 }: TemplateSelectorProps) => {
   const { data } = useRequest<{ data: { list: any[] } }>(() =>
-    fetchTemplateList({ status: templateStatus, receiver_type: templateReceiveType }),
+    fetchTemplateList({
+      status: templateStatus,
+      receiver_type: templateReceiveType,
+      page_size: 200,
+    }),
   );
 
   const { list: objectTypeList } = data || {};
