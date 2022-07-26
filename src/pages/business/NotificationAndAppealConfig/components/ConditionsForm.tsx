@@ -15,8 +15,8 @@ const { Option } = Select;
 interface ConditionsFormProps {
   form: FormInstance;
   formName: string;
-  onChange: (val: any) => void;
-  value: any;
+  onChange?: (val: any) => void;
+  value?: any;
 }
 
 const initialStyle = { width: 200 };
@@ -40,8 +40,8 @@ const TimeSelectInput = ({
   onChange,
   value: defaultValue,
 }: {
-  onChange: (val: any) => void;
-  value: [number, string];
+  onChange?: (val: any) => void;
+  value?: [number, string];
 }) => {
   const [defaultSeconds, defaultUnit] = defaultValue?.length ? defaultValue : [0, 'minute'];
   const defaultConvertedValue = Number(defaultSeconds) / convertUnitToNum(defaultUnit);
@@ -50,7 +50,7 @@ const TimeSelectInput = ({
   const [unitVal, setUnit] = useState(defaultUnit);
 
   const handleChangeToForm = (_value: number) => {
-    onChange(`${_value},${unitVal}`);
+    onChange?.(`${_value},${unitVal}`);
   };
 
   const handleChangeUnit = (_unit: string) => {
