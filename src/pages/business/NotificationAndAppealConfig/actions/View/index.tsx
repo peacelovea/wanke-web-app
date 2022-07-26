@@ -185,7 +185,9 @@ const View = ({ id, dataSource }: ViewProps) => {
             <Descriptions title={'基础信息'} column={2}>
               <Descriptions.Item label="操作名称">{action_name_cn}</Descriptions.Item>
               <Descriptions.Item label="操作英文名">{action_name}</Descriptions.Item>
-              <Descriptions.Item label="适用的内容类型">{object_types.join(',')}</Descriptions.Item>
+              <Descriptions.Item label="适用的内容类型">
+                {object_types?.join(',')}
+              </Descriptions.Item>
             </Descriptions>
             <Descriptions column={2}>
               <Descriptions.Item label="默认配置">
