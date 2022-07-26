@@ -21,8 +21,8 @@ const ActionsSelector = ({ ...props }: ActionsSelectorType) => {
       allowClear
       showSearch
       filterOption={(inputValue, option) =>
-        (option?.label as string).includes(inputValue) ||
-        (option?.value as string).includes(inputValue)
+        (option?.label as string)?.includes(inputValue) ||
+        (option?.value as string)?.includes(inputValue)
       }
       {...props}
     />

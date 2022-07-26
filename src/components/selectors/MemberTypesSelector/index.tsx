@@ -17,10 +17,9 @@ const MemberTypesSelector = (props: SelectProps) => {
       options={options}
       showSearch
       allowClear
-      filterOption={(inputValue, option) =>
-        (option?.label as string).includes(inputValue) ||
-        (option?.value as string).includes(inputValue)
-      }
+      filterOption={(inputValue, option) => {
+        return (option?.label as string)?.includes(inputValue);
+      }}
       {...props}
     />
   );
