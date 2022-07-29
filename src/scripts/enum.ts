@@ -7,8 +7,8 @@ export enum JumpTypeEnum {
 export enum ReceiverTypeEnum {
   beDisposer = 1,
   reporter,
-  complainant,
   beConsulted,
+  complainant,
   beCommunicator,
   qualified,
 }
