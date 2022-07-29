@@ -21,6 +21,7 @@ import useSource from '@/models/useSource';
 import useMemberType from '@/models/useMemberType';
 import useTemplates from '@/models/useTemplates';
 import { useAccess } from '@@/plugin-access/access';
+import { convertUnitToNum } from '../../components/ConditionsForm';
 
 interface DataTypes {
   name: string;
@@ -114,14 +115,33 @@ const View = ({ id, dataSource }: ViewProps) => {
   const specialArr =
     special_notify_factors?.map(({ name, key, value }: DataTypes) => {
       const newKey = CONFIG_CONDITIONS.get(key);
+      const secondsValue = value?.split(',');
+      const switchTimeEngToChine = (time: string) => {
+        switch (time) {
+          case 'minute':
+            return '分';
+          case 'hour':
+            return '时';
+          case 'day':
+            return '天';
+          case 'week':
+            return '周';
+          default:
+            return '分';
+        }
+      };
       return {
         name,
         key: newKey,
+        // 处置时间需要特别操作：把关于总秒数和单位转化为用户所需要的真实数据
         value:
-          value
-            ?.split(',')
-            ?.map((item) => conditionValueItem(key, item))
-            ?.join(',') ?? '-',
+          key !== 'seconds_between_update_and_operate'
+            ? value
+                ?.split(',')
+                ?.map((item) => conditionValueItem(key, item))
+                ?.join(',') ?? '-'
+            : Number(secondsValue[0]) / convertUnitToNum(secondsValue[1]) +
+              switchTimeEngToChine(secondsValue[1]),
       };
     }) ?? [];
 

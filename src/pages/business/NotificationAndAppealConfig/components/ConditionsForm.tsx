@@ -21,7 +21,7 @@ interface ConditionsFormProps {
 
 const initialStyle = { width: 200 };
 
-const convertUnitToNum = (unit: string) => {
+export const convertUnitToNum = (unit: string) => {
   switch (unit) {
     case 'minute':
       return 60;
