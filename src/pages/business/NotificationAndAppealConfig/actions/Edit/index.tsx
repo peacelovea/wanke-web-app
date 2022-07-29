@@ -61,6 +61,7 @@ function Edit() {
               value: value.includes(',') ? value.split(',') : value,
             })) ?? [];
 
+          console.log('specialNotifyCondition', specialNotifyCondition);
           const appealFactors =
             res.appeal_factors?.map(({ key, value }: any) => ({
               condition: key,
