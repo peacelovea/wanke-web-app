@@ -148,8 +148,12 @@ function Edit() {
       form.resetFields(handleTargets);
     }
   };
-  const { data: objectTypeData } = useRequest<{ data: { list: API.ListItemType[] } }>(() =>
-    fetchObjectTypeList({ action_name: actionId }),
+
+  const { data: objectTypeData } = useRequest<{ data: { list: API.ListItemType[] } }>(
+    () => fetchObjectTypeList({ action_name: actionId }),
+    {
+      ready: !!actionId,
+    },
   );
 
   const { list: objectTypeList } = objectTypeData || {};
@@ -169,7 +173,7 @@ function Edit() {
             <Descriptions.Item label="适用的内容类型">
               <div>
                 {objectTypeList?.map((item: any) => (
-                  <Tag key={`${item.name}-${item}`} style={{ margin: `${5}px` }}>
+                  <Tag key={`${item.name}-${item}`} style={{ marginBottom: `${5}px` }}>
                     {item.desc}
                   </Tag>
                 ))}

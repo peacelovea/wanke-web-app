@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { FormPanelRefs } from '@/pages/business/TemplateManage/components/FormPanel';
-import { Modal, Descriptions, Divider } from 'antd';
+import { Modal, Descriptions, Divider, Tag } from 'antd';
 import { useRequest } from 'umi';
 import { history } from '@@/core/history';
 import { fetchConfigDetail } from '@/services';
@@ -93,6 +93,18 @@ const View = ({ id, dataSource }: ViewProps) => {
       dataIndex: 'value',
     },
   ];
+
+  const templateColumns = [
+    {
+      title: '名称',
+      dataIndex: 'key',
+    },
+    {
+      title: '通知模板',
+      dataIndex: 'value',
+    },
+  ];
+
   useEffect(() => {
     if (id && visible) {
       run(id);
@@ -161,10 +173,11 @@ const View = ({ id, dataSource }: ViewProps) => {
 
   const InformArr =
     templates?.map(({ id, receiver_type, template_id }: InformDataType) => {
+      const templateName = _.find(templatesSource, { id: template_id })?.template_name;
       return {
         name: id,
         key: RECEIVER_TYPE_OPTIONS.get(receiver_type),
-        value: _.find(templatesSource, { id: template_id })?.template_name ?? '-',
+        value: templateName ? `${template_id}-${templateName}` : '-',
       };
     }) ?? [];
 
@@ -206,7 +219,11 @@ const View = ({ id, dataSource }: ViewProps) => {
               <Descriptions.Item label="操作名称">{action_name_cn}</Descriptions.Item>
               <Descriptions.Item label="操作英文名">{action_name}</Descriptions.Item>
               <Descriptions.Item label="适用的内容类型">
-                {object_types?.join(',')}
+                {object_types?.map((item: string, index: number) => (
+                  <Tag key={`${item}-${index}`} style={{ marginBottom: `${5}px` }}>
+                    {item}
+                  </Tag>
+                )) ?? '-'}
               </Descriptions.Item>
             </Descriptions>
             <Descriptions column={2}>
@@ -236,9 +253,8 @@ const View = ({ id, dataSource }: ViewProps) => {
             <>
               <Descriptions title={'通知详情'} column={1}>
                 <Descriptions.Item>
-                  <TableView dataList={InformArr} columns={columns} size="small" />
+                  <TableView dataList={InformArr} columns={templateColumns} size="small" />
                 </Descriptions.Item>
-                <Descriptions.Item label="条件组合">{special_notify_condition}</Descriptions.Item>
               </Descriptions>
               <Divider />
             </>
