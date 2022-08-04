@@ -38,6 +38,12 @@ export const NOTIFICATION_TYPE: ProColumns = {
   renderFormItem: () => <TemplateTypeSelector />,
   renderText: (text) => TEMPLATE_TYPE_OPTIONS.get(text) || '-',
 };
+export const NOTIFICATION_TEMPLATE_ID: ProColumns = {
+  title: '通知模版ID',
+  key: 'id',
+  dataIndex: 'id',
+  hideInTable: true,
+};
 
 export const MESSAGE_TITLE: ProColumns = {
   title: '消息标题',
@@ -93,4 +99,5 @@ export const TEMPLATE_MANAGE_COLUMNS = [
   UPDATE_AT,
   UPDATE_BY,
   STATUS,
+  NOTIFICATION_TEMPLATE_ID,
 ];
