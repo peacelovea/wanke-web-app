@@ -91,6 +91,7 @@ export const JUMP_DETAIL: ProColumns = {
 const MAX_ORDER = 20;
 
 export const NOTIFICATION_RECORD = [
+  INFOMATION_ID,
   ID,
   {
     ...SENDING_TIME,
@@ -126,5 +127,4 @@ export const NOTIFICATION_RECORD = [
     ...JUMP_DETAIL,
     order: MAX_ORDER - 6,
   },
-  INFOMATION_ID,
 ];
