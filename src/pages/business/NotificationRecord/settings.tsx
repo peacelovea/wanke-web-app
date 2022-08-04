@@ -54,7 +54,16 @@ export const INFOMATION_TITLE: ProColumns = {
     </Tooltip>
   ),
 };
-
+export const INFOMATION_ID: ProColumns = {
+  title: '消息ID',
+  key: 'id',
+  dataIndex: 'id',
+};
+export const NOTIFICATION_TEMPLATE_ID: ProColumns = {
+  title: '通知模版ID',
+  key: 'template_id',
+  dataIndex: 'template_id',
+};
 export const SUB_INFOMATION_TITLE: ProColumns = {
   title: '消息副标题',
   key: 'msg_sub_title',
@@ -95,6 +104,7 @@ export const NOTIFICATION_RECORD = [
     ...OBJECT_PERSION,
     order: MAX_ORDER - 7,
   },
+  NOTIFICATION_TEMPLATE_ID,
   {
     ...NOTIFICATION_TEMPLATE_NAME,
     order: MAX_ORDER - 2,
@@ -103,6 +113,7 @@ export const NOTIFICATION_RECORD = [
     ...INFOMATION_TITLE,
     order: MAX_ORDER - 3,
   },
+
   {
     ...SUB_INFOMATION_TITLE,
     order: MAX_ORDER - 4,
@@ -115,4 +126,5 @@ export const NOTIFICATION_RECORD = [
     ...JUMP_DETAIL,
     order: MAX_ORDER - 6,
   },
+  INFOMATION_ID,
 ];
