@@ -6,7 +6,7 @@ function Dashboard() {
     {
       title: '哪吒',
       url: 'https://nezha.in.zhihu.com',
-      owner: '庄素丽，李鹯峣',
+      owner: '宋崇宇',
     },
     {
       title: '天玑',
@@ -16,7 +16,7 @@ function Dashboard() {
     {
       title: '天璇',
       url: 'https://tianxuan.in.zhihu.com',
-      owner: '杨飞',
+      owner: '李鹯峣',
     },
     {
       title: '工单 zticket',
@@ -24,7 +24,7 @@ function Dashboard() {
       owner: '李鹯峣',
     },
     {
-      title: '用户积分',
+      title: '用户违规积分',
       url: 'https://isuda.in.zhihu.com/app/ade937e60615',
       owner: '李鹯峣',
     },
@@ -32,11 +32,6 @@ function Dashboard() {
       title: '知乎舆情',
       url: 'http://hawk.in.zhihu.com',
       owner: '李鹯峣',
-    },
-    {
-      title: '众裁运营平台',
-      url: 'https://ops.in.zhihu.com/#/agora/tools',
-      owner: '杨元元',
     },
   ];
 
