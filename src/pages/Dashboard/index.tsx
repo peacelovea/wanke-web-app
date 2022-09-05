@@ -56,11 +56,6 @@ function Dashboard() {
       url: 'https://zticket.in.zhihu.com/dispose_log',
       owner: '李鹯峣',
     },
-    {
-      title: '图片水印解析',
-      url: 'http://lib.zhdocs.io/lib-seoiyan.html',
-      owner: '庄素丽',
-    },
   ];
 
   const configs = [
