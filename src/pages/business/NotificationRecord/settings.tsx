@@ -3,7 +3,7 @@ import { JUMP_TYPE_OPTIONS, RECEIVER_TYPE_OPTIONS } from '@/scripts/options';
 import JumpTypeSelector from '@/components/selectors/JumpTypeSelector';
 import ReceiverSelector from '@/components/selectors/ReceiverSelector';
 import { Tooltip } from 'antd';
-import { formatTime } from '@/scripts/utils';
+import { formatTime, formatDateRangeValue } from '@/scripts/utils';
 import styles from './index.less';
 import ParagraphExpand from '@/components/ParagraphExpand';
 
@@ -15,12 +15,23 @@ export const ID: ProColumns = {
   hideInSearch: true,
 };
 
+// 表单中隐藏 , 表格中展示
 export const SENDING_TIME: ProColumns = {
   title: '发送时间',
   key: 'create_at',
   dataIndex: 'create_at',
   hideInSearch: true,
   renderText: (text) => formatTime(text),
+};
+
+// 表格中隐藏 , 表单中展示
+export const SENDING_TIME_SEARCH: ProColumns = {
+  title: '发送时间',
+  key: 'create_at_search',
+  dataIndex: 'create_at_search',
+  valueType: 'dateRange',
+  hideInTable: true,
+  search: { transform: formatDateRangeValue },
 };
 
 export const USER_TOKEN: ProColumns = {
@@ -94,10 +105,6 @@ export const NOTIFICATION_RECORD = [
   INFOMATION_ID,
   ID,
   {
-    ...SENDING_TIME,
-    order: MAX_ORDER - 8,
-  },
-  {
     ...USER_TOKEN,
     order: MAX_ORDER - 1,
   },
@@ -105,7 +112,10 @@ export const NOTIFICATION_RECORD = [
     ...OBJECT_PERSION,
     order: MAX_ORDER - 7,
   },
-  NOTIFICATION_TEMPLATE_ID,
+  {
+    ...NOTIFICATION_TEMPLATE_ID,
+    order: MAX_ORDER - 10,
+  },
   {
     ...NOTIFICATION_TEMPLATE_NAME,
     order: MAX_ORDER - 2,
@@ -114,7 +124,6 @@ export const NOTIFICATION_RECORD = [
     ...INFOMATION_TITLE,
     order: MAX_ORDER - 3,
   },
-
   {
     ...SUB_INFOMATION_TITLE,
     order: MAX_ORDER - 4,
@@ -124,7 +133,15 @@ export const NOTIFICATION_RECORD = [
     order: MAX_ORDER - 5,
   },
   {
+    ...SENDING_TIME,
+    order: MAX_ORDER - 8,
+  },
+  {
     ...JUMP_DETAIL,
     order: MAX_ORDER - 6,
+  },
+  {
+    ...SENDING_TIME_SEARCH,
+    order: MAX_ORDER - 11,
   },
 ];

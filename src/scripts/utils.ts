@@ -112,3 +112,16 @@ export const covertTimeStoH = (time: number | undefined | null): any => {
  * 数字转大写字母
  */
 export const numberToLetter = (num: number) => String.fromCharCode(num + 65);
+
+/**
+ * 日期转时间戳
+ */
+const data2TimeStamp = (date: string) => Math.floor(new Date(date).getTime() / 1000);
+
+/**
+ * 格式化dateRange组件数据类型
+ */
+export const formatDateRangeValue = (val: [string, string]) => ({
+  start_time: data2TimeStamp(val[0]),
+  end_time: data2TimeStamp(val[1]),
+});
