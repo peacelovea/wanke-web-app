@@ -4,6 +4,7 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { ProTable } from '@ant-design/pro-table';
 import { useRef } from 'react';
 import { NOTIFICATION_RECORD } from './settings';
+import style from './index.less';
 
 function NotificationAndAppealConfig() {
   const actionRef = useRef();
@@ -23,6 +24,7 @@ function NotificationAndAppealConfig() {
         columns={columns}
         request={requestTable}
         search={{
+          className: style.notificationRecordTableSearch,
           labelWidth: 'auto',
           span: 6,
         }}

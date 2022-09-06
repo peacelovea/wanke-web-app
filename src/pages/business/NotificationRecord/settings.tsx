@@ -30,6 +30,7 @@ export const SENDING_TIME_SEARCH: ProColumns = {
   key: 'create_at_search',
   dataIndex: 'create_at_search',
   valueType: 'dateRange',
+  // renderFormItem: () => <RangePicker style={{width:300}} placeholder="请输入"/>,
   hideInTable: true,
   search: { transform: formatDateRangeValue },
 };
@@ -102,8 +103,15 @@ export const JUMP_DETAIL: ProColumns = {
 const MAX_ORDER = 20;
 
 export const NOTIFICATION_RECORD = [
-  INFOMATION_ID,
   ID,
+  {
+    ...INFOMATION_ID,
+    order: MAX_ORDER - 9,
+  },
+  {
+    ...SENDING_TIME,
+    order: MAX_ORDER - 8,
+  },
   {
     ...USER_TOKEN,
     order: MAX_ORDER - 1,
@@ -124,6 +132,7 @@ export const NOTIFICATION_RECORD = [
     ...INFOMATION_TITLE,
     order: MAX_ORDER - 3,
   },
+
   {
     ...SUB_INFOMATION_TITLE,
     order: MAX_ORDER - 4,
@@ -133,15 +142,11 @@ export const NOTIFICATION_RECORD = [
     order: MAX_ORDER - 5,
   },
   {
-    ...SENDING_TIME,
-    order: MAX_ORDER - 8,
-  },
-  {
     ...JUMP_DETAIL,
     order: MAX_ORDER - 6,
   },
   {
     ...SENDING_TIME_SEARCH,
-    order: MAX_ORDER - 11,
+    order: MAX_ORDER - 10,
   },
 ];
