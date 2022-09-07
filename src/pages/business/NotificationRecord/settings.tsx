@@ -30,7 +30,6 @@ export const SENDING_TIME_SEARCH: ProColumns = {
   key: 'create_at_search',
   dataIndex: 'create_at_search',
   valueType: 'dateRange',
-  // renderFormItem: () => <RangePicker style={{width:300}} placeholder="请输入"/>,
   hideInTable: true,
   search: { transform: formatDateRangeValue },
 };
