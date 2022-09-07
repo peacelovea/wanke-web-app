@@ -19,7 +19,7 @@ interface ConditionsFormProps {
   value?: any;
 }
 
-const initialStyle = { width: 200 };
+const initialStyle = { width: 500 };
 
 export const convertUnitToNum = (unit: string) => {
   switch (unit) {
@@ -108,9 +108,9 @@ const ConditionsForm = ({ form, formName, onChange, value }: ConditionsFormProps
           <ResourcesSelector style={initialStyle} placeholder="请选择处置来源" mode="multiple" />
         );
       case 'reason':
-        return <MutiplyInput />;
+        return <MutiplyInput style={initialStyle} />;
       case 'rule':
-        return <MutiplyInput />;
+        return <MutiplyInput style={initialStyle} />;
       case 'member_type':
         return (
           <MemberTypesSelector style={initialStyle} placeholder="请选择用户类型" mode="multiple" />
