@@ -24,7 +24,7 @@ function NotificationAndAppealConfig() {
         columns={columns}
         request={requestTable}
         search={{
-          className: style.notificationRecordTableSearch,
+          className: style.tableSearch,
           labelWidth: 'auto',
           span: 6,
         }}
