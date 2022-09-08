@@ -29,7 +29,7 @@ export const SENDING_TIME_SEARCH: ProColumns = {
   title: '发送时间',
   key: 'create_at_search',
   dataIndex: 'create_at_search',
-  valueType: 'dateRange',
+  valueType: 'dateTimeRange',
   hideInTable: true,
   search: { transform: formatDateRangeValue },
 };
