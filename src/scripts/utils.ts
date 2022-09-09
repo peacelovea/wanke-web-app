@@ -1,6 +1,9 @@
 import type { ProTableGoMoreColumns } from '@ant-pro-go/table';
 import moment from 'moment';
 
+const startTimeTail = '00:00:00';
+const endTimeTail = '23:59:59';
+
 export interface ProTableRequestParams {
   current: number;
   pageSize: number;
@@ -125,3 +128,11 @@ export const formatDateRangeValue = (val: [string, string]) => ({
   start_time: data2TimeStamp(val[0]),
   end_time: data2TimeStamp(val[1]),
 });
+
+/**
+ *  获取当天的时间区间 ['2022-09-01 00:00:00', '2022-09-01 23:59:59']
+ */
+export const getTodayInterval = (): [string, string] => [
+  `${moment().format('YYYY-MM-DD')} ${startTimeTail}`,
+  `${moment().format('YYYY-MM-DD')} ${endTimeTail}`,
+];

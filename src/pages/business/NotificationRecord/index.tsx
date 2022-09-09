@@ -23,6 +23,7 @@ function NotificationAndAppealConfig() {
         actionRef={actionRef}
         columns={columns}
         request={requestTable}
+        scroll={{ x: 1300 }}
         search={{
           className: style.tableSearch,
           labelWidth: 'auto',
