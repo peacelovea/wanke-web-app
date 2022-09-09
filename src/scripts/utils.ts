@@ -125,3 +125,11 @@ export const formatDateRangeValue = (val: [string, string]) => ({
   start_time: data2TimeStamp(val[0]),
   end_time: data2TimeStamp(val[1]),
 });
+
+/**
+ *  获取当天的时间区间 ['2022-09-01 00:00:00', '2022-09-01 23:59:59']
+ */
+export const getTodayInterval = (): [string, string] => [
+  `${moment().format('YYYY-MM-DD')} 00:00:00`,
+  `${moment().format('YYYY-MM-DD')} 23:59:59`,
+];
