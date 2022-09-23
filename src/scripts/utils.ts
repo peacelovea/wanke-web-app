@@ -1,6 +1,8 @@
 import type { ProTableGoMoreColumns } from '@ant-pro-go/table';
 import moment from 'moment';
-import { isUndefined } from 'lodash';
+
+const startTimeTail = '00:00:00';
+const endTimeTail = '23:59:59';
 
 export interface ProTableRequestParams {
   current: number;
@@ -113,6 +115,27 @@ export const covertTimeStoH = (time: number | undefined | null): any => {
  * 数字转大写字母
  */
 export const numberToLetter = (num: number) => String.fromCharCode(num + 65);
+
+/**
+ * 日期转时间戳
+ */
+const data2TimeStamp = (date: string) => Math.floor(new Date(date).getTime() / 1000);
+
+/**
+ * 格式化dateRange组件数据类型
+ */
+export const formatDateRangeValue = (val: [string, string]) => ({
+  start_time: data2TimeStamp(val[0]),
+  end_time: data2TimeStamp(val[1]),
+});
+
+/**
+ *  获取当天的时间区间 ['2022-09-01 00:00:00', '2022-09-01 23:59:59']
+ */
+export const getTodayInterval = (): [string, string] => [
+  `${moment().format('YYYY-MM-DD')} ${startTimeTail}`,
+  `${moment().format('YYYY-MM-DD')} ${endTimeTail}`,
+];
 
 /**
  * 数据不存在时返回规定的内容

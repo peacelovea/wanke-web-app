@@ -3,7 +3,7 @@ import { JUMP_TYPE_OPTIONS, RECEIVER_TYPE_OPTIONS } from '@/scripts/options';
 import JumpTypeSelector from '@/components/selectors/JumpTypeSelector';
 import ReceiverSelector from '@/components/selectors/ReceiverSelector';
 import { Tooltip } from 'antd';
-import { formatTime } from '@/scripts/utils';
+import { formatTime, formatDateRangeValue, getTodayInterval } from '@/scripts/utils';
 import styles from './index.less';
 import ParagraphExpand from '@/components/ParagraphExpand';
 
@@ -15,24 +15,39 @@ export const ID: ProColumns = {
   hideInSearch: true,
 };
 
+// 表单中隐藏 , 表格中展示
 export const SENDING_TIME: ProColumns = {
   title: '发送时间',
   key: 'create_at',
   dataIndex: 'create_at',
   hideInSearch: true,
+  width: 180,
   renderText: (text) => formatTime(text),
+};
+
+// 表格中隐藏 , 表单中展示
+export const SENDING_TIME_SEARCH: ProColumns = {
+  title: '发送时间',
+  key: 'create_at_search',
+  dataIndex: 'create_at_search',
+  valueType: 'dateTimeRange',
+  hideInTable: true,
+  initialValue: getTodayInterval(),
+  search: { transform: formatDateRangeValue },
 };
 
 export const USER_TOKEN: ProColumns = {
   title: '用户token',
   key: 'member_token',
   dataIndex: 'member_token',
+  width: 100,
 };
 
 export const OBJECT_PERSION: ProColumns = {
   title: '接收者',
   key: 'receiver_type',
   dataIndex: 'receiver_type',
+  width: 80,
   renderFormItem: () => <ReceiverSelector />,
   renderText: (text) => RECEIVER_TYPE_OPTIONS.get(text) || '-',
 };
@@ -41,13 +56,14 @@ export const NOTIFICATION_TEMPLATE_NAME: ProColumns = {
   title: '通知模版名称',
   key: 'template_name',
   dataIndex: 'template_name',
+  width: 150,
 };
 
 export const INFOMATION_TITLE: ProColumns = {
   title: '消息标题',
   key: 'msg_title',
   dataIndex: 'msg_title',
-  width: 100,
+  width: 50,
   render: (_, record) => (
     <Tooltip placement="top" title={record.msg_title}>
       <div className={styles.nowrapRow}>{record.msg_title}</div>
@@ -58,17 +74,20 @@ export const INFOMATION_ID: ProColumns = {
   title: '消息ID',
   key: 'id',
   dataIndex: 'id',
+  fixed: true,
+  width: 80,
 };
 export const NOTIFICATION_TEMPLATE_ID: ProColumns = {
   title: '通知模版ID',
   key: 'template_id',
   dataIndex: 'template_id',
+  width: 100,
 };
 export const SUB_INFOMATION_TITLE: ProColumns = {
   title: '消息副标题',
   key: 'msg_sub_title',
   dataIndex: 'msg_sub_title',
-  width: 200,
+  width: 150,
   render: (_, record) => <ParagraphExpand rows={3} content={record.msg_sub_title} />,
 };
 
@@ -76,6 +95,7 @@ export const CLICK_JUMPPAGE: ProColumns = {
   title: '点击跳转页',
   key: 'jump_type',
   dataIndex: 'jump_type',
+  width: 150,
   renderFormItem: () => <JumpTypeSelector />,
   renderText: (text) => JUMP_TYPE_OPTIONS.get(text) || '-',
 };
@@ -84,15 +104,17 @@ export const JUMP_DETAIL: ProColumns = {
   title: '跳转详情',
   key: 'msg_detail',
   dataIndex: 'msg_detail',
-  width: 300,
   render: (_, record) => <ParagraphExpand rows={2} content={record.msg_detail} />,
 };
 
 const MAX_ORDER = 20;
 
 export const NOTIFICATION_RECORD = [
-  INFOMATION_ID,
   ID,
+  {
+    ...INFOMATION_ID,
+    order: MAX_ORDER - 9,
+  },
   {
     ...SENDING_TIME,
     order: MAX_ORDER - 8,
@@ -105,7 +127,10 @@ export const NOTIFICATION_RECORD = [
     ...OBJECT_PERSION,
     order: MAX_ORDER - 7,
   },
-  NOTIFICATION_TEMPLATE_ID,
+  {
+    ...NOTIFICATION_TEMPLATE_ID,
+    order: MAX_ORDER - 10,
+  },
   {
     ...NOTIFICATION_TEMPLATE_NAME,
     order: MAX_ORDER - 2,
@@ -126,5 +151,9 @@ export const NOTIFICATION_RECORD = [
   {
     ...JUMP_DETAIL,
     order: MAX_ORDER - 6,
+  },
+  {
+    ...SENDING_TIME_SEARCH,
+    order: MAX_ORDER - 10,
   },
 ];

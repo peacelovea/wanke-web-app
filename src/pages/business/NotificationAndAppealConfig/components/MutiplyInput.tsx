@@ -6,7 +6,7 @@ interface MutiplyInputProps extends SelectProps {
   onChange?: (value: any) => any;
 }
 
-const MutiplyInput = ({ onChange, value }: MutiplyInputProps) => {
+const MutiplyInput = ({ onChange, value, ...props }: MutiplyInputProps) => {
   const defaultValue = Array.isArray(value) ? value : value?.split(',') ?? [];
   const [val, setValue] = useState(defaultValue);
 
@@ -21,8 +21,9 @@ const MutiplyInput = ({ onChange, value }: MutiplyInputProps) => {
       onChange={handleChange}
       mode="tags"
       style={{ width: '200px' }}
-      tokenSeparators={[',']}
+      tokenSeparators={[',', ' ']}
       open={false}
+      {...props}
     />
   );
 };
