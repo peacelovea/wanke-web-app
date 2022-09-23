@@ -1,5 +1,6 @@
 import type { ProTableGoMoreColumns } from '@ant-pro-go/table';
 import moment from 'moment';
+import { isUndefined } from 'lodash';
 
 export interface ProTableRequestParams {
   current: number;
@@ -112,3 +113,9 @@ export const covertTimeStoH = (time: number | undefined | null): any => {
  * 数字转大写字母
  */
 export const numberToLetter = (num: number) => String.fromCharCode(num + 65);
+
+/**
+ * 数据不存在时返回规定的内容
+ */
+export const getOptimalValue = (val: any, str: string | number = '-') =>
+  isUndefined(val) ? str : val;

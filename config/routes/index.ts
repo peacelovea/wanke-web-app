@@ -17,6 +17,12 @@ const routes: IConfig['routes'] = [
   },
   business,
   {
+    path: '/commentControl',
+    component: '@/pages/CommentControl',
+    name: '评论区管控',
+    icon: 'IdcardOutlined',
+  },
+  {
     path: '/',
     redirect: '/dashboard',
   },
