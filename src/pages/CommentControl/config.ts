@@ -12,8 +12,8 @@ const kindOptions = [
 ];
 
 enum actionType {
-  placedTop = 'top',
-  placedBottom = 'bottom',
+  placedTop = 'up_comment',
+  placedBottom = 'down_comment',
 }
 
 const kindFieldMap = {

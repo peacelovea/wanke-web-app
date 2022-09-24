@@ -1,5 +1,7 @@
-import { useState, useMemo, useCallback } from 'react';
-import { Checkbox } from 'antd';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useMemo, useCallback, useEffect } from 'react';
+import { Checkbox, Spin } from 'antd';
+import { isEmpty } from 'lodash';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import Header from './Header';
 import Footer from './Footer';
@@ -14,17 +16,19 @@ type PagingType = {
 };
 
 interface IProps {
+  loading: boolean;
   dataSource: ParentCommentDataType[];
   pagingParms: PagingType;
-  onAction: () => void;
+  onAction: (type: string, selectKey: Map<string, boolean>) => void;
   onScroll: () => void;
 }
 
 function CommentList(props: IProps) {
-  const { dataSource, onAction, onScroll, pagingParms } = props;
+  const { dataSource, onScroll, pagingParms, loading } = props;
   const [length, setLength] = useState(0); // 没有特别的含义, 主要做用触发更新
   const allkeyMap = useMemo(() => dataSource.map((item) => item?.comment?.id), [dataSource]);
-  const selectKey = useMemo(() => new Map(), []);
+  const selectKey = useMemo(() => new Map(), [loading]);
+
   const onSelect = useCallback(
     (e: CheckboxChangeEvent, key: string) => {
       if (e?.target?.checked) {
@@ -52,13 +56,22 @@ function CommentList(props: IProps) {
     [allkeyMap, selectKey],
   );
 
+  const onAction = (type: string) => {
+    props.onAction(type, selectKey);
+  };
+
+  useEffect(() => {
+    setLength(0);
+  }, [loading]);
+
   return (
-    <>
+    <Spin spinning={loading} size="large" delay={500}>
       <Header
         num={getOptimalValue(pagingParms?.total, 0)}
         selectNum={length}
         onSelectAll={onSelectAll}
-        checked={length !== 0 && length === dataSource?.length}
+        // !== 0 排除刚一进入页面长度都为0的情况
+        checked={!isEmpty(dataSource) && length === dataSource?.length}
       />
       <ScrollView
         suffix="commentModalParent"
@@ -80,7 +93,7 @@ function CommentList(props: IProps) {
           },
           {
             type: 'foot',
-            renderWithChildren: true,
+            renderWithChildren: false,
             render: () => (
               <CommentFooterAction
                 key={`footerAction-${id}`}
@@ -93,7 +106,7 @@ function CommentList(props: IProps) {
         ]}
       />
       <Footer onAction={onAction} />
-    </>
+    </Spin>
   );
 }
 export default CommentList;

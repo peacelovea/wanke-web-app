@@ -6,6 +6,7 @@ import HtmlContent from '@/components/HtmlContent';
 import CommentItem from '@/components/CommentItem';
 import { formateDataSource } from './utils';
 import type { CommentType, ParentCommentDataType } from '../commentControl';
+import { isUndefined } from 'lodash';
 import styles from './index.less';
 
 interface IProps {
@@ -19,15 +20,16 @@ interface IProps {
 }
 
 function ScrollView(props: IProps) {
-  const { onScroll, suffix, dataSource: data, getAction, height, isSub } = props;
+  const { onScroll, suffix, dataSource: data, getAction, height, isSub, pagingParms } = props;
   const domId = useMemo(() => `scroll-view-${suffix}`, [suffix]);
   const dataSource = useMemo(() => formateDataSource(data, isSub), [data, isSub]);
+
   return (
     <div id={domId} className={styles.listScrollView} style={{ maxHeight: height }}>
       <InfiniteScroll
         dataLength={dataSource?.length}
         next={onScroll}
-        hasMore={true}
+        hasMore={isUndefined(pagingParms.has_more) ? true : pagingParms.has_more}
         loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
         endMessage={<Divider plain>到底啦 🤐</Divider>}
         scrollableTarget={domId}

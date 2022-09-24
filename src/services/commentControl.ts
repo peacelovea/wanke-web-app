@@ -25,3 +25,9 @@ export const fetchCommentList = async (params?: any) =>
  */
 export const fetchMoreComments = async (params?: any) =>
   request(`${PREFIX}/anchor_more_comments`, { params, mock: false });
+
+/**
+ *  评论勾选上传接口
+ */
+export const submitSelectKey = async (data?: any) =>
+  request(`${PREFIX}/process`, { data, method: 'POST', mock: false });

@@ -43,12 +43,14 @@ function Detail(props: IProps) {
       <Card title="详细内容" bordered={false} className={styles.detailCard}>
         {HtmlContent(content as string)}
       </Card>
-      <CommentModal
-        object_id={object_id}
-        object_type={object_type}
-        visible={visible}
-        onCancel={onCancel}
-      />
+      {visible ? (
+        <CommentModal
+          object_id={object_id}
+          object_type={object_type}
+          visible={visible}
+          onCancel={onCancel}
+        />
+      ) : null}
     </div>
   );
 }
