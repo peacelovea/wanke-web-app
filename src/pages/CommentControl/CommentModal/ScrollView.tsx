@@ -39,7 +39,7 @@ function ScrollView(props: IProps) {
           dataSource={dataSource}
           renderItem={(item: ParentCommentDataType) => {
             const {
-              comment: { id, author, content, likes, reply_member },
+              comment: { id, author, content, likes, reply_member, is_parent_author },
               child_comment_count,
               child_comments = [],
             } = item;
@@ -52,6 +52,7 @@ function ScrollView(props: IProps) {
                       <Title
                         avatar={getOptimalValue(author?.fullname)}
                         reply_member={reply_member?.fullname}
+                        is_parent_author={is_parent_author}
                       />
                     ),
                     avatar: author?.avatar_url,

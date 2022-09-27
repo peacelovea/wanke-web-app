@@ -59,6 +59,7 @@ export type CommentType = {
   has_more?: boolean;
   ip_info?: any;
   top?: boolean;
+  is_parent_author?: boolean;
 };
 
 export type ParentCommentDataType = {

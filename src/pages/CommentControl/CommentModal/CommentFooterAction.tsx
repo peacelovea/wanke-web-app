@@ -10,6 +10,7 @@ import type { CommentType } from '../commentControl';
 import { getOptimalValue } from '@/scripts/utils';
 import HtmlContent from '@/components/HtmlContent';
 import Title from './Title';
+import { formateInfo } from './utils';
 import styles from './index.less';
 
 interface IProps {
@@ -49,7 +50,8 @@ function CommentFooterAction(props: IProps) {
       <div className={styles.childCommentListStyle}>
         {child.length && !visible
           ? child.map(({ comment }) => {
-              const { author, content, id, reply_member } = comment;
+              const { author, content, id, reply_member, likes, is_parent_author } = comment;
+              const info = formateInfo(comment);
               return (
                 <CommentItem
                   key={id}
@@ -58,8 +60,11 @@ function CommentFooterAction(props: IProps) {
                       <Title
                         avatar={getOptimalValue(author?.fullname)}
                         reply_member={reply_member?.fullname}
+                        is_parent_author={is_parent_author}
                       />
                     ),
+                    info,
+                    likes,
                     avatar: author?.avatar_url,
                     content: HtmlContent(content),
                     className: styles.commentItem,
