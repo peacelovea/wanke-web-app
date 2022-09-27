@@ -60,6 +60,7 @@ export type CommentType = {
   ip_info?: any;
   top?: boolean;
   is_parent_author?: boolean;
+  is_author_top?: boolean;
 };
 
 export type ParentCommentDataType = {

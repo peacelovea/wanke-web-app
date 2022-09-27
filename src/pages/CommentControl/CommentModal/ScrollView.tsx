@@ -16,7 +16,12 @@ interface IProps {
   pagingParams: any;
   dataSource: CommentType[] | ParentCommentDataType[];
   onScroll: () => void;
-  getAction: (id: string, child_comment_count: number, child_comments: CommentType[]) => any[];
+  getAction: (
+    id: string,
+    child_comment_count: number,
+    child_comments: CommentType[],
+    is_author_top?: boolean,
+  ) => any[];
 }
 
 function ScrollView(props: IProps) {
@@ -39,7 +44,15 @@ function ScrollView(props: IProps) {
           dataSource={dataSource}
           renderItem={(item: ParentCommentDataType) => {
             const {
-              comment: { id, author, content, likes, reply_member, is_parent_author },
+              comment: {
+                id,
+                author,
+                content,
+                likes,
+                reply_member,
+                is_parent_author,
+                is_author_top,
+              },
               child_comment_count,
               child_comments = [],
             } = item;
@@ -62,7 +75,7 @@ function ScrollView(props: IProps) {
                     info,
                     className: styles.commentItem,
                   }}
-                  actions={getAction(id, child_comment_count, child_comments)}
+                  actions={getAction(id, child_comment_count, child_comments, is_author_top)}
                 />
               </List.Item>
             );

@@ -35,11 +35,13 @@ export function formateInfo(comment: CommentType | undefined) {
     featured,
     top,
     created_at,
+    is_author_top,
   } = comment || {};
   const infoArr: InfoType[] = [];
   setInfo(infoArr, created_at, formatTime(created_at), 'text');
   setInfo(infoArr, text, text, 'text');
   setInfo(infoArr, featured, '热', 'hot');
   setInfo(infoArr, top, '官方置顶', 'tag');
+  setInfo(infoArr, is_author_top, '作者置顶', 'tag');
   return infoArr;
 }
