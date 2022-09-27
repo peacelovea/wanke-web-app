@@ -54,7 +54,7 @@ export const request: RequestConfig = {
   errorHandler: (error) => {
     if (error?.name === 'BizError') {
       notification.error({
-        message: `返回错误 ${error.data?.error?.code}`,
+        message: `返回错误 ${error.data?.error?.code || error.message}`,
         description: error.data?.error?.message,
       });
       return Promise.reject(error.data);
