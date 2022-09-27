@@ -21,6 +21,7 @@ const routes: IConfig['routes'] = [
     component: '@/pages/CommentControl',
     name: '评论区管控',
     icon: 'IdcardOutlined',
+    access: 'accessRouteFilter',
   },
   {
     path: '/',
