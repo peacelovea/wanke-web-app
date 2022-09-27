@@ -23,7 +23,7 @@ const kindFieldMap = {
 
 // Search表单初始化数据
 const initialValues = {
-  obj_type: 'answer',
+  obj_kind: 'id',
 };
 
 const defaultCommentListParams = {
