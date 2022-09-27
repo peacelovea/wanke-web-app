@@ -18,13 +18,13 @@ type PagingType = {
 interface IProps {
   loading: boolean;
   dataSource: ParentCommentDataType[];
-  pagingParms: PagingType;
-  onAction: (type: string, selectKey: Map<string, boolean>) => void;
+  pagingParams: PagingType;
+  onAction: (key: number, type: string, selectKey: Map<string, boolean>) => void;
   onScroll: () => void;
 }
 
 function CommentList(props: IProps) {
-  const { dataSource, onScroll, pagingParms, loading } = props;
+  const { dataSource, onScroll, pagingParams, loading } = props;
   const [length, setLength] = useState(0); // 没有特别的含义, 主要做用触发更新
   const allkeyMap = useMemo(() => dataSource.map((item) => item?.comment?.id), [dataSource]);
   const selectKey = useMemo(() => new Map(), [loading]);
@@ -56,8 +56,8 @@ function CommentList(props: IProps) {
     [allkeyMap, selectKey],
   );
 
-  const onAction = (type: string) => {
-    props.onAction(type, selectKey);
+  const onAction = (key: number, type: string) => {
+    props.onAction(key, type, selectKey);
   };
 
   useEffect(() => {
@@ -67,7 +67,7 @@ function CommentList(props: IProps) {
   return (
     <Spin spinning={loading} size="large" delay={500}>
       <Header
-        num={getOptimalValue(pagingParms?.total, 0)}
+        num={getOptimalValue(pagingParams?.total, 0)}
         selectNum={length}
         onSelectAll={onSelectAll}
         // !== 0 排除刚一进入页面长度都为0的情况
@@ -78,7 +78,7 @@ function CommentList(props: IProps) {
         onScroll={onScroll}
         dataSource={dataSource}
         height={600}
-        pagingParms={pagingParms}
+        pagingParams={pagingParams}
         getAction={(id: string, child_comment_count: number, child_comments: CommentType[]) => [
           {
             type: 'left',

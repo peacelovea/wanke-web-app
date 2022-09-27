@@ -9,6 +9,7 @@ import { formateDataSource } from './utils';
 import type { CommentType } from '../commentControl';
 import { getOptimalValue } from '@/scripts/utils';
 import HtmlContent from '@/components/HtmlContent';
+import Title from './Title';
 import styles from './index.less';
 
 interface IProps {
@@ -20,7 +21,7 @@ interface IProps {
 function CommentFooterAction(props: IProps) {
   const { id, num, child_comments = [] } = props;
   const [visible, setVisible] = useState(false);
-  const { loading, offset, dataSource, run, pagingParms } = usePaging(
+  const { loading, offset, dataSource, run, pagingParams } = usePaging(
     fetchMoreComments,
     defaultCommentListParams.limit,
   );
@@ -48,12 +49,17 @@ function CommentFooterAction(props: IProps) {
       <div className={styles.childCommentListStyle}>
         {child.length && !visible
           ? child.map(({ comment }) => {
-              const { author, content, id } = comment;
+              const { author, content, id, reply_member } = comment;
               return (
                 <CommentItem
                   key={id}
                   commentData={{
-                    author: getOptimalValue(author?.fullname),
+                    author: (
+                      <Title
+                        avatar={getOptimalValue(author?.fullname)}
+                        reply_member={reply_member?.fullname}
+                      />
+                    ),
                     avatar: author?.avatar_url,
                     content: HtmlContent(content),
                     className: styles.commentItem,
@@ -68,7 +74,7 @@ function CommentFooterAction(props: IProps) {
             suffix={`subCommentList-${id}`}
             height={400}
             dataSource={dataSource}
-            pagingParms={pagingParms}
+            pagingParams={pagingParams}
             onScroll={onScroll}
             getAction={() => []}
           />

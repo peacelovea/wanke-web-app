@@ -23,9 +23,7 @@ const kindFieldMap = {
 
 // Search表单初始化数据
 const initialValues = {
-  obj_kind: 'token',
   obj_type: 'answer',
-  obj_url_token: '2684537883',
 };
 
 const defaultCommentListParams = {

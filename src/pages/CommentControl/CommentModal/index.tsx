@@ -29,7 +29,7 @@ const confirm = (onOk: () => void) => {
 
 function CommentModal(props: IProps) {
   const { object_id, object_type, visible, onCancel } = props;
-  const { loading, offset, dataSource, run, pagingParms, onRefresh } = usePaging(
+  const { loading, offset, dataSource, run, pagingParams, onRefresh } = usePaging(
     fetchCommentList,
     defaultCommentListParams.limit,
   );
@@ -60,21 +60,22 @@ function CommentModal(props: IProps) {
     });
   };
 
-  const onOk = (action: string, selectKey: Map<string, boolean>) => {
+  const onOk = (reason_id: number, action: string, selectKey: Map<string, boolean>) => {
     const params = [...selectKey.entries()].map((item) => {
       const [object_id] = item;
       return {
         object_id,
-        object_type,
-        reason_id: 30003, // 没有特别含义后端说接口统一，占位
+        // 没有特别含义后端统一接口
+        object_type: 'comment',
+        reason_id: Number(reason_id),
         action,
       };
     });
     onSubmit({ params });
   };
 
-  const onAction = (action: string, selectKey: Map<string, boolean>) => {
-    confirm(() => onOk(action, selectKey));
+  const onAction = (key: number, action: string, selectKey: Map<string, boolean>) => {
+    confirm(() => onOk(key, action, selectKey));
   };
 
   useEffect(() => {
@@ -95,7 +96,7 @@ function CommentModal(props: IProps) {
     >
       <CommentList
         dataSource={dataSource}
-        pagingParms={pagingParms}
+        pagingParams={pagingParams}
         onAction={onAction}
         onScroll={onScroll}
         loading={submitLoading}

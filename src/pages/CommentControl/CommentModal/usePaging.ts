@@ -4,7 +4,7 @@ import { useRequest } from 'ahooks';
 function usePaging(fetchFunc: (params?: any) => void, limit: number) {
   const [offset, setOffset] = useState<number>(0);
   const [dataSource, setDataSource] = useState<any[]>([]);
-  const [pagingParms, setpPagingParms] = useState({
+  const [pagingParams, setPagingParams] = useState({
     total: 0,
     has_more: false,
   });
@@ -13,7 +13,7 @@ function usePaging(fetchFunc: (params?: any) => void, limit: number) {
     onSuccess: ({ data, ...rest }, [, isRefresh = false]) => {
       setDataSource(isRefresh ? [...data] : [...dataSource, ...data]);
       setOffset((offset) => offset + limit);
-      setpPagingParms(rest);
+      setPagingParams(rest);
     },
   });
 
@@ -27,7 +27,7 @@ function usePaging(fetchFunc: (params?: any) => void, limit: number) {
     dataSource,
     loading,
     offset,
-    pagingParms,
+    pagingParams,
     setOffset,
     onRefresh,
     run,

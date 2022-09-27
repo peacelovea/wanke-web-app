@@ -30,4 +30,10 @@ export const fetchMoreComments = async (params?: any) =>
  *  评论勾选上传接口
  */
 export const submitSelectKey = async (data?: any) =>
-  request(`${PREFIX}/process`, { data, method: 'POST', mock: false });
+  request(`${PREFIX}/process/batch`, { data, method: 'POST', mock: false });
+
+/**
+ *  提交勾选的下拉列表Option
+ */
+export const getDropdownOptions = async () =>
+  request(`${PREFIX}/comment-ctrl/reasons`, { mock: false });

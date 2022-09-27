@@ -4,23 +4,23 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { getOptimalValue } from '@/scripts/utils';
 import HtmlContent from '@/components/HtmlContent';
 import CommentItem from '@/components/CommentItem';
-import { formateDataSource } from './utils';
+import { formateDataSource, formateInfo } from './utils';
 import type { CommentType, ParentCommentDataType } from '../commentControl';
-import { isUndefined } from 'lodash';
+import Title from './Title';
 import styles from './index.less';
 
 interface IProps {
   suffix: string | number;
   isSub?: true;
   height: number;
-  pagingParms: any;
+  pagingParams: any;
   dataSource: CommentType[] | ParentCommentDataType[];
   onScroll: () => void;
   getAction: (id: string, child_comment_count: number, child_comments: CommentType[]) => any[];
 }
 
 function ScrollView(props: IProps) {
-  const { onScroll, suffix, dataSource: data, getAction, height, isSub, pagingParms } = props;
+  const { onScroll, suffix, dataSource: data, getAction, height, isSub, pagingParams } = props;
   const domId = useMemo(() => `scroll-view-${suffix}`, [suffix]);
   const dataSource = useMemo(() => formateDataSource(data, isSub), [data, isSub]);
 
@@ -29,7 +29,7 @@ function ScrollView(props: IProps) {
       <InfiniteScroll
         dataLength={dataSource?.length}
         next={onScroll}
-        hasMore={isUndefined(pagingParms.has_more) ? true : pagingParms.has_more}
+        hasMore={pagingParams?.has_more}
         loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
         endMessage={<Divider plain>到底啦 🤐</Divider>}
         scrollableTarget={domId}
@@ -39,18 +39,26 @@ function ScrollView(props: IProps) {
           dataSource={dataSource}
           renderItem={(item: ParentCommentDataType) => {
             const {
-              comment: { id, author, content },
+              comment: { id, author, content, likes, reply_member },
               child_comment_count,
               child_comments = [],
             } = item;
+            const info = formateInfo(item?.comment);
             return (
               <List.Item key={id}>
                 <CommentItem
                   commentData={{
-                    author: getOptimalValue(author?.fullname),
+                    author: (
+                      <Title
+                        avatar={getOptimalValue(author?.fullname)}
+                        reply_member={reply_member?.fullname}
+                      />
+                    ),
                     avatar: author?.avatar_url,
                     content: HtmlContent(content),
                     childCommentCount: child_comment_count,
+                    likes,
+                    info,
                     className: styles.commentItem,
                   }}
                   actions={getAction(id, child_comment_count, child_comments)}

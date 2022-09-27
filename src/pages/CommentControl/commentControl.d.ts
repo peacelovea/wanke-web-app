@@ -49,12 +49,16 @@ export type CommentType = {
   id: string;
   content: string;
   created_at: number;
+  likes: number;
   url: string;
   url_token: string;
   child_comment_count?: number;
   author: CommentAuthorType;
+  featured: boolean;
   reply_member?: CommentAuthorType;
   has_more?: boolean;
+  ip_info?: any;
+  top?: boolean;
 };
 
 export type ParentCommentDataType = {
