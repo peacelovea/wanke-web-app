@@ -20,7 +20,7 @@ const confirm = (onOk: () => void) => {
   Modal.confirm({
     title: '确认操作',
     icon: <ExclamationCircleOutlined />,
-    content: '请确认操作此内容置顶/置底',
+    content: '请确认是否操作此内容',
     okText: '确认',
     cancelText: '取消',
     onOk,
@@ -38,11 +38,6 @@ function CommentModal(props: IProps) {
     onSuccess: () => {
       onRefresh({ object_id, object_type, ...defaultCommentListParams });
       // 如果在刷新时处于滚动条的底部, 数据来之后处于底部会不断请求,发起请求之后滚动到顶部
-      const scrollDom = document.getElementById('scroll-view-commentModalParent');
-      if (scrollDom) scrollDom.scrollTo({ top: 0 });
-    },
-    onError: () => {
-      onRefresh({ object_id, object_type, ...defaultCommentListParams });
       const scrollDom = document.getElementById('scroll-view-commentModalParent');
       if (scrollDom) scrollDom.scrollTo({ top: 0 });
     },
