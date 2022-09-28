@@ -2,9 +2,7 @@ import { useState, useCallback } from 'react';
 import { Descriptions, Card, Button } from 'antd';
 import type { DetailType } from './commentControl';
 import { getOptimalValue, formatTime } from '@/scripts/utils';
-// import Video from '@/components/Player/Video';
 import HtmlContent from '@/components/HtmlContent';
-// import RichText from '@/components/RichText/v1/RichText';
 import CommentModal from './CommentModal';
 import styles from './index.less';
 
@@ -44,18 +42,6 @@ function Detail(props: IProps) {
       </Card>
       <Card title="详细内容" bordered={false} className={styles.detailCard}>
         {HtmlContent(content as string)}
-        {/* <RichText content={content}  /> */}
-        {/* <Video /> */}
-        {/* <iframe
-          // style={{marginLeft: '25px', verticalAlign: 'middle'}}
-          // title="视频"
-          src={'https://video.zhihu.com/zticket_review_video/1556237865557655552'}
-          width="650"
-          height="330"
-          frameBorder="0"
-          allowFullScreen
-          // marginWidth={1}
-        /> */}
       </Card>
       {visible ? (
         <CommentModal
