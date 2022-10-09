@@ -11,6 +11,7 @@ import MutiplyInput from './MutiplyInput';
 import { useState } from 'react';
 
 const { Option } = Select;
+const rules = [{ required: true, message: '请选择或输入' }];
 
 interface ConditionsFormProps {
   form: FormInstance;
@@ -133,7 +134,7 @@ const ConditionsForm = ({ form, formName, onChange, value }: ConditionsFormProps
                   {...field}
                   label={<strong>{numberToLetter(index)}</strong>}
                   name={[field.name, 'condition']}
-                  rules={[{ required: true }]}
+                  rules={rules}
                 >
                   <ConditionsSelector style={{ width: 200 }} />
                 </Form.Item>
@@ -141,11 +142,7 @@ const ConditionsForm = ({ form, formName, onChange, value }: ConditionsFormProps
                   {() => {
                     const condition = form.getFieldValue([formName])[index]?.condition;
                     return (
-                      <Form.Item
-                        {...field}
-                        name={[field.name, 'value']}
-                        rules={[{ required: true }]}
-                      >
+                      <Form.Item {...field} name={[field.name, 'value']} rules={rules}>
                         {renderConditionValueItem(condition)}
                       </Form.Item>
                     );
