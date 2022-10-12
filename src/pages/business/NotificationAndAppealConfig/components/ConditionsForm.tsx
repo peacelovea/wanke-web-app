@@ -20,7 +20,7 @@ interface ConditionsFormProps {
   value?: any;
 }
 
-const initialStyle = { width: 500 };
+const initialStyle = { width: 550 };
 
 export const convertUnitToNum = (unit: string) => {
   switch (unit) {
@@ -75,7 +75,8 @@ const TimeSelectInput = ({
     <Row className={styles.inputGroup}>
       <Col>
         <Input
-          addonBefore="处置时间距离内容最新更新时间"
+          style={{ width: 100 }}
+          className={styles.dateInput}
           onChange={handleChangeValue}
           value={value}
         />
@@ -83,6 +84,7 @@ const TimeSelectInput = ({
       <Col>
         <Select
           defaultValue="minute"
+          className={styles.unitSelect}
           onChange={handleChangeUnit}
           value={unitVal}
           allowClear={false}
@@ -136,7 +138,7 @@ const ConditionsForm = ({ form, formName, onChange, value }: ConditionsFormProps
                   name={[field.name, 'condition']}
                   rules={rules}
                 >
-                  <ConditionsSelector style={{ width: 200 }} />
+                  <ConditionsSelector style={{ width: 250 }} />
                 </Form.Item>
                 <Form.Item noStyle shouldUpdate>
                   {() => {
