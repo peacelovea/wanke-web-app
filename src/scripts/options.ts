@@ -55,5 +55,5 @@ export const CONFIG_CONDITIONS = new Map([
   ['reason', '处置理由'],
   ['rule', '策略ID'],
   ['member_type', '用户类型'],
-  ['seconds_between_update_and_operate', '处置时间'],
+  ['seconds_between_update_and_operate', '处置时间距最近更新时间大于'],
 ]);

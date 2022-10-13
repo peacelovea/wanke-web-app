@@ -86,6 +86,7 @@ const View = ({ id, dataSource }: ViewProps) => {
     },
     {
       title: '名称',
+      width: 220,
       dataIndex: 'key',
     },
     {
