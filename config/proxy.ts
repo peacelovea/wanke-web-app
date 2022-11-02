@@ -7,7 +7,7 @@ const proxy: IConfig['proxy'] = {
     changeOrigin: true,
   },
   '/api/*': {
-    target: 'https://ruban.in.zhihu.com/',
+    target: 'https://ruban.dev.zhihu.com/',
     changeOrigin: true,
   },
 };

@@ -61,6 +61,7 @@ export const request: RequestConfig = {
     }
     if (error?.response) {
       const { status } = error.response;
+      console.log('status', status);
       if (status === 401) {
         oauth.login();
         return null;
