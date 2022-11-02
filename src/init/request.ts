@@ -16,6 +16,7 @@ const codeMap = {
 
 const authHeaderInterceptor: RequestInterceptor = (url, options) => {
   const token = oauth.getStoreToken();
+
   // 过滤 sso 获取 token 的接口请求，否则会 cors
   const authHeader = url.includes(OAUTH_TOKEN_URL)
     ? undefined
@@ -61,7 +62,6 @@ export const request: RequestConfig = {
     }
     if (error?.response) {
       const { status } = error.response;
-      console.log('status', status);
       if (status === 401) {
         oauth.login();
         return null;

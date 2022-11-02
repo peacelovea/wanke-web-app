@@ -29,6 +29,7 @@ class Oauth {
   static async getAccessToken(code: any) {
     const { data } = await axios(`/api/login?code=${code}&redirect_uri=${REDIRECT_URI}`);
     const { access_token } = data?.data || {};
+
     Oauth.setStoreToken(access_token);
   }
   static getStoreToken() {
