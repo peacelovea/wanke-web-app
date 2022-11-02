@@ -1,10 +1,9 @@
-import oauth from '@/scripts/oauth';
-import PageLoading from '@ant-design/pro-layout/es/PageLoading';
-import queryString from 'query-string';
 import { useEffect } from 'react';
+import queryString from 'query-string';
+import oauth from '@/scripts/oauth';
 
 export default () => {
-  const { code = '', state } = queryString.parse(window.location.search);
+  const { code = '', state = '' } = queryString.parse(window.location.search);
   useEffect(() => {
     async function getToken() {
       await oauth.getAccessToken(code);
@@ -12,5 +11,5 @@ export default () => {
     }
     getToken();
   }, [code, state]);
-  return <PageLoading />;
+  return <div>加载中 </div>;
 };

@@ -1,47 +1,35 @@
 import queryString from 'query-string';
-// @ts-ignore
-import { request } from 'umi';
+import axios from 'axios';
 
-const { protocol, origin, host, pathname, search } = window.location;
-const LOGOUT_URL = `${protocol}//sso.in.zhihu.com/logout?next=${origin}`;
-const OAUTH_URL = `${protocol}//sso.in.zhihu.com/api/app/oauth`;
-const CLIENTID = 'ruban';
-const RESPONENTCODE = 'code';
-const SCOPE = 'all';
-const STATE = pathname + search;
-export const REDIRECTURI = `${protocol}//${host}/login`;
+const { protocol, host } = window.location;
+const OAUTH_URL = `https://staff.zhihu.com/oidc`;
+const CLIENT_ID = '62fb75ff010cb09d42fbf794';
+const SCOPE = 'openid username email profile';
+
+export const REDIRECT_URI = `${protocol}//${host}/login`;
 export const OAUTH_TOKEN_URL = `${OAUTH_URL}/token`;
 
 class Oauth {
   static login() {
     Oauth.removeStoreToken();
     window.location.href = queryString.stringifyUrl({
-      url: `${OAUTH_URL}/authorize`,
+      url: `${OAUTH_URL}/auth`,
       query: {
-        client_id: CLIENTID,
-        response_type: RESPONENTCODE,
-        redirect_uri: REDIRECTURI,
+        client_id: CLIENT_ID,
+        response_type: 'code',
+        redirect_uri: REDIRECT_URI,
         scope: SCOPE,
-        state: STATE,
       },
     });
   }
   static logout() {
     Oauth.removeStoreToken();
-    window.location.href = LOGOUT_URL;
+    window.location.href = '';
   }
   static async getAccessToken(code: any) {
-    const url = queryString.stringifyUrl({
-      url: OAUTH_TOKEN_URL,
-      query: {
-        code,
-        grant_type: 'authorization_code',
-      },
-    });
-    const { access_token } = await request(url, {
-      method: 'POST',
-      requestType: 'form',
-    });
+    const { data } = await axios(`/api/login?code=${code}&redirect_uri=${REDIRECT_URI}`);
+    const { access_token } = data?.data || {};
+
     Oauth.setStoreToken(access_token);
   }
   static getStoreToken() {
