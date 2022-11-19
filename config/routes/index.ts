@@ -1,31 +1,18 @@
 import { IConfig } from 'umi';
-import business from './business';
-
+import businessGroup from './businessGroup';
+import cityCompany from './cityCompany';
 const routes: IConfig['routes'] = [
   {
-    name: '登录',
-    path: '/login',
-    component: '@/pages/login',
-    layout: false,
-    hideInMenu: true,
-  },
-  {
-    path: '/dashboard',
-    component: '@/pages/Dashboard',
+    path: '/home',
+    component: '@/pages/Home',
     name: '首页',
     icon: 'DashboardOutlined',
   },
-  business,
-  {
-    path: '/commentControl',
-    component: '@/pages/CommentControl',
-    name: '评论区管控',
-    icon: 'IdcardOutlined',
-    access: 'accessRouteFilter',
-  },
+  businessGroup,
+  cityCompany,
   {
     path: '/',
-    redirect: '/dashboard',
+    redirect: '/Home',
   },
   {
     component: './404',
