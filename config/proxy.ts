@@ -3,11 +3,11 @@ import { IConfig } from 'umi';
 
 const proxy: IConfig['proxy'] = {
   '/mock/*': {
-    target: 'http://zapi.in.zhihu.com',
+    target: '',
     changeOrigin: true,
   },
   '/api/*': {
-    target: 'https://ruban.dev.zhihu.com/',
+    target: '',
     changeOrigin: true,
   },
 };

@@ -2,7 +2,7 @@
   "name": "ruban",
   "version": "1.0.0",
   "private": true,
-  "description": "鲁班前端",
+  "description": "万科",
   "scripts": {
     "start": "cross-env REACT_APP_ENV=dev MOCK=none umi dev",
     "build": "umi build",

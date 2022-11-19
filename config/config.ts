@@ -28,6 +28,7 @@ export default defineConfig({
     ie: 11,
   },
   layout: {},
+  mock: {},
   title: false,
   ignoreMomentLocale: true,
   proxy,

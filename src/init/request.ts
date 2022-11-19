@@ -1,6 +1,5 @@
 // 全局请求配置
-import { IS_PROD } from '@/scripts/constants';
-import oauth, { OAUTH_TOKEN_URL } from '@/scripts/oauth';
+import oauth from '@/scripts/oauth';
 import { notification } from 'antd';
 import type { RequestConfig } from 'umi';
 import type { RequestInterceptor } from 'umi-request';
@@ -14,23 +13,10 @@ const codeMap = {
   504: '网关超时',
 };
 
-const authHeaderInterceptor: RequestInterceptor = (url, options) => {
-  const token = oauth.getStoreToken();
-
-  // 过滤 sso 获取 token 的接口请求，否则会 cors
-  const authHeader = url.includes(OAUTH_TOKEN_URL)
-    ? undefined
-    : { Authorization: `Bearer ${token}` };
-  return {
-    url,
-    options: { ...options, interceptors: true, headers: authHeader },
-  };
-};
-
 // @ts-ignore
 const zapiMockOptionsInterceptor: RequestInterceptor = (url, { mock, ...options }) => {
   return {
-    url: mock && !IS_PROD ? `/mock/6513/${url}` : url,
+    url: mock ? `/mock/6513/${url}` : url,
     options: { ...options, interceptors: true },
   };
 };
@@ -78,5 +64,5 @@ export const request: RequestConfig = {
     }
     throw error;
   },
-  requestInterceptors: [zapiMockOptionsInterceptor, authHeaderInterceptor],
+  requestInterceptors: [zapiMockOptionsInterceptor],
 };

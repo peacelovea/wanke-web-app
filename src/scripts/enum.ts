@@ -1,3 +1,4 @@
+// 代码中用枚举 避免魔法数字
 export enum JumpTypeEnum {
   site = 1,
   costumeDetail = 2,
