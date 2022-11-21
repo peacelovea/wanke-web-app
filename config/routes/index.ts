@@ -1,6 +1,7 @@
 import { IConfig } from 'umi';
 import businessGroup from './businessGroup';
 import cityCompany from './cityCompany';
+import project from './project';
 const routes: IConfig['routes'] = [
   {
     path: '/home',
@@ -10,6 +11,7 @@ const routes: IConfig['routes'] = [
   },
   businessGroup,
   cityCompany,
+  project,
   {
     path: '/',
     redirect: '/Home',

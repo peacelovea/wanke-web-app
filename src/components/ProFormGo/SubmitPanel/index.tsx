@@ -68,7 +68,6 @@ function SubmitPanel({
         {formGroups &&
           [...formGroups].map((grp: any) => {
             const { type, title, children } = grp;
-
             if (type === 'ProFormGroup') {
               return (
                 <div key={title}>

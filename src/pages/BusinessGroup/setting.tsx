@@ -9,12 +9,14 @@ export const TEST = {
 
 export const BUSINESS_GROUP = {
   title: '事业群',
+  key: 'id',
   dataIndex: 'id',
   // width: COLUMN_WIDTH_GO.s,
 };
 
 export const BUSINESS_ENCODE = {
   title: '事业群编码',
+  key: 'id',
   dataIndex: 'id',
   hideInSearch: true,
   // width: COLUMN_WIDTH_GO.s,
@@ -22,6 +24,7 @@ export const BUSINESS_ENCODE = {
 
 export const CREATE_PERSON = {
   title: '创建人',
+  key: 'id',
   dataIndex: 'id',
   hideInSearch: true,
   // width: COLUMN_WIDTH_GO.s,
@@ -29,6 +32,7 @@ export const CREATE_PERSON = {
 
 export const CREATE_TIME = {
   title: '创建时间',
+  key: 'id',
   dataIndex: 'id',
   hideInSearch: true,
   // width: COLUMN_WIDTH_GO.s,
@@ -36,6 +40,7 @@ export const CREATE_TIME = {
 
 export const OPTIONS = {
   title: '操作',
+  key: 'id',
   dataIndex: 'id',
   hideInSearch: true,
   // width: COLUMN_WIDTH_GO.s,
@@ -133,7 +138,6 @@ export const BUSINESS_GROUP_DETAIL: SubmitPanelProps['formGroups'] = [
         type: 'FormText',
         label: '事业群',
         name: 'id',
-        rules: [{ required: true, message: '请输入事业群' }],
         colSpan: 8,
       },
       {

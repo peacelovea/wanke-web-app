@@ -1,22 +1,22 @@
+import { ProTable } from '@ant-design/pro-table';
 import { useRef } from 'react';
-import { BUSINESS_GROUP_MANAGEMENT } from './setting';
+import { PROJECT_MANAGE } from './setting';
 import { history } from 'umi';
 import { Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import PageTitle from '@/components/PageTitle';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import ProTableGo from '@/components/ProTableGo';
 
-const BusinessGroupManagement = () => {
+const CityCompanyManagement = () => {
   const actionRef = useRef<any>();
-  const columns: ProTableGoColumns[] = [...BUSINESS_GROUP_MANAGEMENT];
+  const columns: ProTableGoColumns[] = [...PROJECT_MANAGE];
 
   // const requestTable = (params: any) => {
   //     return makeProTableRequest(fetchConfigList)(params);
   // };
 
   const goCreating = () => {
-    const url = `/business-group/add`;
+    const url = `/project/add`;
     history.push(url);
   };
 
@@ -30,7 +30,7 @@ const BusinessGroupManagement = () => {
   return (
     <PageHeaderWrapper>
       <PageTitle title="事业群管理" />
-      <ProTableGo
+      <ProTable
         columns={columns}
         rowKey="id"
         // request={requestTable}
@@ -61,4 +61,4 @@ const BusinessGroupManagement = () => {
   );
 };
 
-export default BusinessGroupManagement;
+export default CityCompanyManagement;

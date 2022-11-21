@@ -16,7 +16,7 @@ wanke-web-app
 │  │  ├─ FormTitle                  设置表格的 title
 │  │  ├─ PageTitle                  原则上每个页面使用该组件，它用来配置页面左上角和浏览器标签的 title
 │  │  ├─ ProFormGo              基于 ProTable 封装的表单类组件，使用时只需透传配置属性即可
-│  │  │  ├─ FormTool                    基于 antd Form 封装的配置化表单
+│  │  │  ├─ FormTool                    基于 antd Form 封装的配置化表单,根据透传的 type 进行组件选择，可以定制所有需要的组件
 │  │  │  ├─ FormWidget                  Form 控件
 │  │  │  ├─ InputGo                     Input 控件
 │  │  │  ├─ SearchPanel                 查询面板

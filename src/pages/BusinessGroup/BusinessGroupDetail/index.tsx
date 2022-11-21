@@ -7,10 +7,16 @@ const BusinessGroupDetail = () => {
   const onFinish = () => {
     console.log('onFinish');
   };
+  const footerRender = () => <></>;
   return (
     <PageHeaderWrapper>
       <PageTitle title="事业群信息" />
-      <SubmitPanel action="readonly" formGroups={BUSINESS_GROUP_DETAIL} onFinish={onFinish} />
+      <SubmitPanel
+        action="readonly"
+        footerRender={footerRender}
+        formGroups={BUSINESS_GROUP_DETAIL}
+        onFinish={onFinish}
+      />
     </PageHeaderWrapper>
   );
 };

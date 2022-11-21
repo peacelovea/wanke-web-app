@@ -7,6 +7,7 @@ import { omit } from 'lodash';
 import type { FormInstance } from 'antd/lib/form';
 import InputGo from '../InputGo';
 import DescriptionGO from '@/components/DescriptionGo';
+import SelectGo from '../SelectGo';
 
 const FormTool: React.FC<FormToolProps> = (props) => {
   const { action, items, className, extraShowParams = {}, children } = props;
@@ -46,11 +47,11 @@ const FormTool: React.FC<FormToolProps> = (props) => {
                   typeof disabled === 'function' ? disabled?.(props, fm) : disabled;
                 const unallowable = isReadOnly ? true : disabledStatus;
 
-                // const selectProps = {
-                //   disabled: unallowable,
-                //   style,
-                //   ...componentProps,
-                // };
+                const selectProps = {
+                  disabled: unallowable,
+                  style,
+                  ...componentProps,
+                };
 
                 let content: any;
                 switch (componentType) {
@@ -61,6 +62,9 @@ const FormTool: React.FC<FormToolProps> = (props) => {
                     content = (
                       <DescriptionGO style={style} disabled={unallowable} {...componentProps} />
                     );
+                    break;
+                  case 'FormSimpleSelect':
+                    content = <SelectGo {...selectProps} />;
                     break;
                   default:
                     content = <></>;

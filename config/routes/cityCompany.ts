@@ -1,6 +1,6 @@
 export default {
   path: '/city-company',
-  name: '城市管理',
+  name: '城市公司',
   icon: 'SettingOutlined',
   routes: [
     {
@@ -9,22 +9,22 @@ export default {
     },
     {
       path: '/city-company/manage',
-      name: '事业群管理',
+      name: '城市公司管理',
       component: './CityCompany',
     },
     {
       path: '/city-company/add',
-      name: '事业群新增',
+      name: '新增',
       component: './CityCompany/CityCompanyAdd',
     },
     {
       path: '/city-company/modify',
-      name: '事业群修改',
+      name: '编辑',
       component: './CityCompany/CityCompanyModify',
     },
     {
       path: '/city-company/detail',
-      name: '事业群详情',
+      name: '详情',
       component: './CityCompany/CityCompanyDetail',
     },
   ],

@@ -1,10 +1,14 @@
 import { Descriptions } from 'antd';
 
 const DescriptionGO = (props: any) => {
-  const { label } = props;
+  const { title } = props;
+  console.log(props, 'props');
+
   return (
-    <Descriptions title="User Info">
-      <Descriptions.Item label={label}>{label}</Descriptions.Item>
+    <Descriptions>
+      <Descriptions.Item>
+        <strong>{title}</strong>
+      </Descriptions.Item>
     </Descriptions>
   );
 };
